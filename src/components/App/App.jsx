@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import Options from "../Options/Options";
 import Feedback from "../Feedback/Feedback";
+import Notification from "../Notification/Notification";
 import Description from "../Description/Description";
-import Statistics from "../Statistics/Statistics";
 import styles from "./App.module.css";
 
 const App = () => {
@@ -38,24 +38,21 @@ const App = () => {
 
   return (
     <div className={styles.app}>
-      <h1>Sip Happens Café</h1>
-      <p>
-        Please leave your feedback about our service by selecting one of the
-        options below.
-      </p>
+      <Description
+        title="Sip Happens Café"
+        text="Please leave your feedback about our service by selecting one of the options below."
+      />
       <Options onFeedback={updateFeedback} totalFeedback={totalFeedback} />
       {totalFeedback > 0 ? (
-        <Feedback>
-          <Statistics
-            good={feedback.good}
-            neutral={feedback.neutral}
-            bad={feedback.bad}
-            total={totalFeedback}
-            positivePercentage={positivePercentage}
-          />
-        </Feedback>
+        <Feedback
+          good={feedback.good}
+          neutral={feedback.neutral}
+          bad={feedback.bad}
+          total={totalFeedback}
+          positivePercentage={positivePercentage}
+        />
       ) : (
-        <Description message="No feedback given yet." />
+        <Notification message="No feedback given yet." />
       )}
     </div>
   );
